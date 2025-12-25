@@ -17,3 +17,10 @@ console.log(arr1.concat(arr2,arr3))
 
 //fill
 console.log(arr2.fill("lol",1, NaN)); //ToIntegerOrInfinity(NaN) = 0
+
+//filter
+function prac(arr){
+    const newarr = arr.filter((ele) => ele > 10);
+    return newarr;
+}
+console.log(prac([1,2,34,10,33,100,4,5]));

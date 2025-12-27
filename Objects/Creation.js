@@ -9,7 +9,7 @@ console.log(user2);
 
 //if the value is non obj then it returns the value with its corresponding obj wrapper  
 const obj1 = Object(1n);
-obj
+console.log(obj1);
 //op - BigInt {1n}
 
 //3. using Object.create
@@ -22,3 +22,15 @@ const obj3 = Object.assign({});
 const source = {a:1};
 const obj4 = Object.assign({}, source);
 
+//5. using Object.defineProperties()
+const obj5 = Object.defineProperties({}, {
+    sayHi : {  // property:{descriptor}
+        value : function(){
+            return "hie!!";
+        },
+        writable:true,
+        enumerable:true,
+        configurable:true
+    }
+});
+console.log(obj5.sayHi());//prints "hie!!"

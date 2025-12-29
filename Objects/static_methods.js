@@ -109,3 +109,14 @@ const fr = {no:10}
 Object.isFrozen(fr)//false
 Object.freeze(fr)//config:false writable:false  + no delete + non-extensible
 Object.isFrozen(fr)//true
+
+//Object.getOwnPropertyNames() - return all the prop names directly owned by the object
+const arr1 = [1,2]
+Object.getOwnPropertyNames(arr1)
+/* (3) ['0','1','2']
+returns an array of strings
+*/
+
+//Object.getPrototypeOf() - returns the prototype of the obj
+const an = []
+console.log(Object.getPrototypeOf(an) == Array.prototype);//true

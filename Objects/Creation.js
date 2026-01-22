@@ -6,6 +6,9 @@ const user = {
 //2. creation of object using new Object()
 const user2 = new Object({name : "abf"})
 console.log(user2);
+/* The constructed form and the literal form result in exactly the same sort of object. 
+The only difference really is that you can add one or more key/value pairs to the literal declaration, 
+whereas with constructed-form objects, you must add the properties one-by-one. */
 
 //if the value is non obj then it returns the value with its corresponding obj wrapper  
 const obj1 = Object(1n);

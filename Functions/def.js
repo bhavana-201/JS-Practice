@@ -32,3 +32,6 @@ we can return fn from a function
 */
 
 // Arrow functions - 
+
+/* Functions created with new Function, have [[Environment]] referencing the global Lexical Environment, not the outer one.
+Hence, they cannot use outer variables. */

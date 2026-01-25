@@ -21,5 +21,16 @@ console.log(document.URL) // about:blank
 
 console.log(d.URL) // about:blank
 
-// Instance Properties
+// Tag: nodeName and tagName
+console.log(document.body.nodeName); //BODY
+console.log(document.body.tagName); //BODY - exists only for element node 
+console.log(document.tagName); //undefined as document is not an element
+console.log(document.nodeName); //#document 
+
+// innerHTML - allows to get html inside the element as a string
+// only valid for element nodes
+document.body.innerHTML = "The new <b>bold"
+
+// outerHTML - contains the full HTML of the element.
+console.log(elem.outerHTML); // <div id="elem">Hello <b>World</b></div>
 

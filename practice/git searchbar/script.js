@@ -13,27 +13,29 @@ Shows an error if user not found */
 const userInput = document.getElementById('searchInput');
 const div = document.getElementById('result');
 const error = document.getElementById('error')
-let timerId;
+let controller;
+
+
 userInput.addEventListener('input',() => {
-    clearTimeout(timerId)
+    
+    div.innerHTML ="";
+    error.innerHTML="";
     console.log(userInput.value)
-    timerId = setTimeout(() => {
-        div.innerHTML ="";
-        error.innerHTML ="";
-        searchUser(userInput.value)
-    },500)
+    if(controller)
+        controller.abort();
+    searchUser(userInput.value);
+    
 })
 
 
 async function searchUser(username) {
-    // Show loading, hide error and result 
     const load = document.getElementById('loading');
     load.classList.remove('hidden');
+    controller = new AbortController();
+    let signal = controller.signal;
     try {
-        // Fetch from: https://api.github.com/users/${username}
-        // Parse JSON
-        // Call displayUser(data)
-        const raw = await fetch(`https://api.github.com/users/${username}`);
+        
+        const raw = await fetch(`https://api.github.com/users/${username}`,{signal});
         if(!raw.ok)
             throw new Error('User not Found');
         const data = await raw.json();

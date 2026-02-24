@@ -1,32 +1,50 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User</title>
   <link rel="stylesheet" href="styles.css">
-  <script  src="./ind.js" defer></script>
+  <script src="./ind.js" defer></script>
 </head>
+
 <body>
   <h1>Welcome</h1>
   <div>
-    <input type="search" placeholder="search user...">
+    <input type="search" id="user-search" placeholder="search user by id...">
+    <button type="click" id="search-btn">search </button>
+    <button type="click" id="allUsers-btn">Show all users</button>
   </div>
-  <form id="userForm" >
-    <div class="form_div">
+  <div class="form">
+    <form id="userForm">
+      <!-- <div class="form_div"> -->
+      <label>Enter your Id: </label>
+      <input type="text" name="id" id="id" placeholder="incase of update...">
+
       <label>Enter your First Name: </label>
-      <input type="text" name="First_Name">
+      <input type="text" name="First_Name" required>
 
       <label>Enter your Last Name: </label>
-      <input type="text" name="Last_Name">
+      <input type="text" name="Last_Name" required>
+      <label>Enter your Joining Date: </label>
+      <input type="date" name="Joining" required>
 
-       <label>Enter your Joining Date: </label>
-      <input type="date" name="Jdate">
+      <button type="submit" id="submit">Submit</button>
+      <button type="click" id="update">Update </button>
+      <!-- </div> -->
+    </form>
+  </div>
+  <div id="user-output" hidden>
+    <!-- <div id="output">
 
-      <button type="submit">Submit</button>
+    </div> -->
 
-    </div>
-  </form>
+    <!-- <button type="click" id="delete">DELETE </button> -->
+
+
+
+  </div>
 </body>
+
 </html>

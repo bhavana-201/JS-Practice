@@ -1,0 +1,30 @@
+The Problem: "Offline-First Auto-Saving Notepad"
+Goal: Build a simple web-based notepad that auto-saves a user's draft locally, mocks an asynchronous "cloud save," and gracefully handles page reloads and closures.Requirements:
+
+1. HTML/UI Structure:
+
+A <textarea> for the user to write their note draft.
+A status indicator element (e.g., a <span> or <div>) that can show text like: "Idle", "Saving to cloud...", "Saved!", or "Unsaved changes".
+A <button> to clear the current draft.
+
+2. DOM Lifecycle Events:
+
+DOMContentLoaded: When the HTML finishes loading, check if there is a saved draft in localStorage. If there is, populate the <textarea> with that saved text.
+beforeUnload: If the user tries to close the tab or refresh the page while a "cloud save" is still pending (or if there are unsaved local changes), show the browser's default warning dialog ("You have unsaved changes, are you sure you want to leave?").
+
+3. Async JS (Mocking a Server):
+
+Create a fake asynchronous function called saveToCloud(text) that returns a Promise.
+Inside the Promise, use setTimeout to simulate a network request that takes 2 seconds to resolve.
+Bonus: Randomly make the promise reject 1 out of every 10 times to practice try/catch error handling in async functions.
+
+4. localStorage & Event Handling (The Logic):
+
+Listen for input events on the <textarea>.
+Debounce the input: Don't save on every single keystroke. Wait until the user has stopped typing for 1 second.
+Once the user stops typing for 1 second:
+Immediately save the draft synchronously to localStorage.
+Change the status indicator to "Saving to cloud...".
+Call your saveToCloud(text) async function.
+await the response.
+Once successful, update the status indicator to "Saved!".

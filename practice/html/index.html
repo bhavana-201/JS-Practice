@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>revising html</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <!-- <style>body{background-color:black}</style> -->
+    </head>
+    <body>
+       <main>
+        <h1>in main tag - section about doctype & meta</h2>
+        <h3> doctype tag is used to tell the browser to use HTML5 standards and it is case-insensitive. </h3>
+        <h3> meta tags are HTML ele that provide metadata abt the webpage, not displayed on screen but used by browsers, search engines and web services to undertand content and purpose of page</h3>
+        <h5>=> type of meta data can be one of the following - </h5>
+        <ul>
+            <li>name attr -  document-level metadata that applies to the whole page.</li>
+            <li>charset attr - gives the char encoding in which doc is encoded</li>
+            <li>content - contains the value for the http-equiv or name attribute,</li>
+            <li> meta property="og:*" - OpenGraph tags </li>
+            <li>http-equip attr</li>
+        </ul>
+        <p>~end of main section~</p>
+    </main>
+    <hr>
+    <div>
+        <h2>semantic HTML5:</h2>
+        <ol>
+            <li>main - Only ONE "main" tag per page. Never nest it inside article tag.</li>
+            <li>header - Intro content for page</li>
+            <li>nav - Primary navigation links only. Not every group of links.</li>
+            <li>section</li>
+            <li>article</li>
+            <li>aside - Content tangentially related to main (sidebars, pull quotes, ads).</li>
+            <li>footer </li>
+            <li>figure - Self-contained media — image, diagram, code snippet with caption.</li>
+            <li>ficaption - caption for the figure tag </li>
+            <li>time - Machine-readable dates/times. Always use datetime attribute.</li>
+        </ol>
+    </div>
+    <hr>
+    <div>
+        <h2>text formatting:</h2>
+        <strong>this is strong tag - importance/urgency;<br></strong>
+        <b>this is bold tag - stylistic offset.<br></b>
+        <i>this is i tag - technical terms or thoughts.<br></i>
+        <em>this is em tag - adds verbal stress<br></em>
+        <mark>this is mark tag for highlight</mark>
+        <abbr title="Hyper text markup lang">HTML - Abbreviation with full expansion on hover.<br></abbr>
+        <cite>cite tag - ref to creative work<br></cite>
+        <q> q tag - inline quote</q><br>
+        <del>this is del tag for strikeouts</del> <br>
+        <ins>this is ins tag<br></ins>
+        this is sub tag - H<sub>2</sub>O<br>
+        <code>this is code tag - let x = 10;</code>
+        <pre><code>
+            let x = 20;
+            console.log("multi line code by wrapping code tag in pre tag")
+        </code></pre>
+         this is hr tag for divisions
+    </div>
+    <hr>
+    <div>
+        <h2>table in html</h2>
+        <table>
+            <caption>
+                table caption
+            </caption>
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>role</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>apple</td>
+                <td>eat</td>
+            </tr>
+            <tr>
+                <td>lemon</td>
+                <td>eat</td>
+            </tr>
+            <tr>
+                <td>orange</td>
+                <td>eat</td>
+            </tr>
+            </tbody>
+            <tfoot>
+                <tr><td colspan="2">colspan</td></tr>
+            </tfoot>
+        </table>
+    </div>
+        
+        
+        <script src="" async defer></script>
+    </body>
+</html>

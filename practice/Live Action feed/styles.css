@@ -1,0 +1,30 @@
+#posts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.post {
+    align-items: center;
+    border: 1px solid rgb(219, 103, 25);
+    border-radius: 15px;
+    width: 500px;
+    height: 300px;
+    margin: 20px;
+    padding: 20px;
+}
+
+.with-like {
+    background-color: rgb(197, 71, 113);
+}
+
+button {
+    margin: 5px;
+    height: 2.5rem;
+    width: 3.5rem;
+    font-size: large;
+    border: 1px dotted;
+    border-radius: 1rem;
+
+}

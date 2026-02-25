@@ -68,7 +68,7 @@
                 const res = await db.Users.get(id); //returns undefined
 
                 if (res === undefined)
-                    return new Error("User not found!")
+                    throw new Error("User not found!")
                 postMessage({ type: "getUser", result: res, req_id })
 
             } catch (e) {
@@ -90,8 +90,6 @@
     catch (e) {
         postMessage()
     }
-
-    //created a store with mail index 
 
 })();
 

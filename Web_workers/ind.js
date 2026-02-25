@@ -13,7 +13,8 @@ function User() {
     })
     //update logic
     const update_btn = document.getElementById('update');
-    update_btn.addEventListener('click', () => {
+    update_btn.addEventListener('click', (e) => {
+        //e.stopImmediatePropagation();
         const data = new FormData(form_data);
         const finalData = Object.fromEntries(data.entries())
         const id = finalData.id;
@@ -24,8 +25,9 @@ function User() {
     const search = document.getElementById("user-search");
     const btn = document.getElementById("search-btn")
     btn.addEventListener('click', () => {
-        console.log("working")
-        getUser(search.value)
+        const data = search.value.trim()
+        if (data.length < 1) return;
+        getUser(data)
     })
 
     //get all users
@@ -33,6 +35,9 @@ function User() {
     all_btn.addEventListener('click', () => {
         getAllUsers();
     })
+
+    //status div
+    const status = document.getElementById("status");
 
     const worker = new Worker('./worker1.js');
     worker.onmessage = receive;
@@ -51,8 +56,8 @@ function User() {
         const data = { id, First_Name, Last_Name, Joining, mail, pswd };
         try {
             const op = await helper("addUser", data);
-            alert(op)
-        } catch (e) { console.log(e) }
+            status_handle(op)
+        } catch (e) { status_handle(e) }
     }
 
 
@@ -60,13 +65,12 @@ function User() {
         console.log("updating user...");
         try {
             const op = await helper("update", { id, obj });
-            alert(op)
-        } catch (e) { alert(e) }
+            status_handle(op)
+        } catch (e) { status_handle(e) }
 
     }
 
     function helper(type, data) {
-
         const req_id = `id${counter++}`
         return new Promise((resolve, reject) => {
             requests.set(req_id, ({ result, error }) => {
@@ -86,7 +90,6 @@ function User() {
     }
     function receive(e) {
         const { req_id, result, error } = e.data
-
         if (requests.has(req_id)) {
             let fn = requests.get(req_id)
             fn({ result, error });
@@ -96,72 +99,61 @@ function User() {
 
 
     async function getUser(id) {
-        //console.log("Retrieving user...");
         try {
             const op = await helper("getUser", { id });
-            console.log(op)
-
             const html_op = document.getElementById("user-output");
-            html_op.removeAttribute('hidden')
             html_op.innerText = "";
-            const del = document.createElement('button');
-            del.innerText = "DELETE"
-            del.classList.add("del_btn");
-            del.setAttribute("id", `${op.id}`)
-
-            const frag = new DocumentFragment()
-            for (let ele of Object.keys(op)) {
-
-                const p = document.createElement("p");
-
-                p.innerHTML = `${ele} : ${op[ele]}`
-
-                frag.appendChild(p);
-            }
-            html_op.appendChild(frag)
-            html_op.appendChild(del)
-            del.addEventListener('click', () => {
-                const id = del.getAttribute("id");
-                console.log(id)
-                removeUser(id);
-            })
-        } catch (e) { console.log(e) }
+            userCard(op);
+        } catch (e) { status_handle(e) }
     }
 
     async function removeUser(id) {
-
-        console.log("Deleing user...");
         try {
-            const op = await helper("removeUser", { id });
-            console.log(op);
-            const html_op = document.getElementById("user-output");
-            html_op.innerText = "";
+            return await helper("removeUser", { id });
+        } catch (e) { status_handle(e) }
+    }
 
-        } catch (e) { console.log(e) }
+    function userCard(obj) {
+        const html_op = document.getElementById("user-output");
+        const div = document.createElement("div");
+        const frag = new DocumentFragment()
+        const del = document.createElement('button');
+        del.innerText = "DELETE"
+        del.classList.add("del_btn");
+        del.setAttribute("id", `${obj.id}`)
+
+        for (let ele of Object.keys(obj)) {
+            const p = document.createElement("p");
+            p.innerText = `${ele} : ${obj[ele]}`
+            div.append(p)
+        }
+        div.appendChild(del);
+        frag.appendChild(div);
+
+        html_op.appendChild(frag)
+
+        del.addEventListener('click', () => {
+            const id = del.getAttribute("id");
+            console.log(id)
+            div.remove();
+            removeUser(id);
+        })
     }
 
     async function getAllUsers() {
         try {
-            console.log("All users...");
             const op = await helper("getAllUsers", {});
-            const frag = new DocumentFragment(); // i dont think i need htis because im
             const html_op = document.getElementById("user-output");
-            html_op.removeAttribute('hidden')
-            html_op.innerText = "";//clear past data
-            op.forEach(obj => {
-                const div = document.createElement("div");
-                console.log(Object.entries(obj))
-                Object.entries(obj).forEach((arr) => {
-                    const p = document.createElement("p");
-                    p.innerText = `${arr.join(" : ")}`
-                    div.append(p)
-                })
-                frag.append(div);
-            })
-            html_op.append(frag)
-
-
-        } catch (e) { console.log(e) };
+            html_op.innerText = "";
+            op.forEach(obj => userCard(obj));
+        } catch (e) { status_handle(e) };
+    }
+    function status_handle(e) {
+        status.innerText = e;
+        status.removeAttribute("hidden")
+        setTimeout(() => {
+            status.setAttribute("hidden", "")
+        }, 800)
     }
 
     return { addUser, updateUser, removeUser, getUser, getAllUsers };

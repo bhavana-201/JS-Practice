@@ -5,7 +5,7 @@ function User() {
     //form logic
     const form_data = document.getElementById('userForm');
     form_data.addEventListener('submit', (e) => {
-        e.preventDefault();// STOPs the page refresh
+        e.preventDefault();// stops the browser sending form to server + page refresh
         const data = new FormData(e.target);
         const finalData = Object.fromEntries(data.entries())
         console.log({ ...finalData });

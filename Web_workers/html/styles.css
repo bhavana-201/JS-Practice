@@ -1,0 +1,60 @@
+#userForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+input {
+    margin: 5px;
+}
+
+button {
+    height: 30px;
+    margin: 4px;
+    background-color: aliceblue;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: rgb(228, 129, 129)
+}
+
+#user-output {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
+
+#user-output>div {
+    /* margin: 1rem 2px; */
+    padding: 10px;
+    border: 1px solid rgb(58, 55, 55);
+    min-width: 500px;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15rem;
+}
+
+#user-search {
+    height: 50px;
+    width: 300px;
+}
+
+.user {
+    opacity: 0;
+}
+
+.show {
+    opacity: 1;
+}

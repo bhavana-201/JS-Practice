@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UPDATE</title>
+
+    <script type="module" src="../JS/main.js" defer></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <h1>Hi!</h1>
+    <div id="status" hidden></div>
+    <div class="form">
+        <form id="userForm">
+            <label>Enter your Id: </label>
+            <input type="text" name="id" id="id" required">
+
+            <label>Enter your First Name: </label>
+            <input type="text" name="First_Name" required>
+
+            <label>Enter your Last Name: </label>
+            <input type="text" name="Last_Name" required>
+
+            <label>Enter your Joining Date: </label>
+            <input type="date" name="Joining" required>
+
+            <!-- <button type="submit" id="submit">Submit</button> -->
+            <button type="submit" id="update" name="update_btn">Update </button>
+
+        </form>
+    </div>
+
+    <div id="user-output">
+
+    </div>
+</body>
+
+</html>

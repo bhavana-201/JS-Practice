@@ -13,6 +13,7 @@
             Users: "id, mail"
         });
         onmessage = (e) => {
+
             const { type, req_id, data } = e.data;
             if (type === "addUser")
                 addUser(req_id, data);
@@ -28,6 +29,7 @@
         }
         async function addUser(req_id, { id, First_Name, Last_Name, Joining, mail, pswd }) {
             //console.log({id,FN, LN,Jdate, mail,pswd})
+
             try {
                 const arr = await db.Users.where("mail").equals(mail).toArray() //prm resolve - undef
                 if (arr.length > 0)//undefined = doesnt exist

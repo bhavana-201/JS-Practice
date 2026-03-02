@@ -28,7 +28,6 @@ button:hover {
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-
 }
 
 #user-output>div {
@@ -51,10 +50,30 @@ button:hover {
     width: 300px;
 }
 
-.user {
-    opacity: 0;
+
+
+/* .show {
+    opacity: 1;
+} */
+
+a {
+    text-decoration: none;
 }
 
-.show {
-    opacity: 1;
+ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 2rem;
+    gap: 10px;
+    list-style: none;
+}
+
+li:hover {
+    background-color: rgb(57, 180, 180);
+}
+
+#load {
+    background-color: brown;
+    height: 20px;
 }

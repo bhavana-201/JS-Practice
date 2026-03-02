@@ -16,7 +16,7 @@ user()
 //get all users
 const all_btn = document.getElementById("allUsers-btn")
 all_btn.addEventListener('click', () => {
-    getAllUsers();
+    getAllUsers(10);
 })
 
 

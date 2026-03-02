@@ -12,6 +12,7 @@
         db.version(1).stores({
             Users: "id, mail"
         });
+        let count = 0;
         onmessage = (e) => {
 
             const { type, req_id, data } = e.data;
@@ -24,7 +25,7 @@
             else if (type === "getUser")
                 getUser(req_id, data.id)
             else if (type === "getAllUsers")
-                getAllUsers(req_id)
+                getAllUsers(req_id, data)
 
         }
         async function addUser(req_id, { id, First_Name, Last_Name, Joining, mail, pswd }) {
@@ -78,10 +79,10 @@
             }
 
         }
-        async function getAllUsers(req_id) {
+        async function getAllUsers(req_id, { limit }) {
             try {
-                const res = await db.Users.toArray();
-                // console.log(res)
+                const res = await db.Users.offset(count).limit(limit).toArray();
+                count += limit;
                 postMessage({ type: "getAllUsers", result: res, req_id })
 
             } catch (e) {

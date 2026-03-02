@@ -1,6 +1,6 @@
 const requests = new Map();
 let counter = 0;
-
+let alreadyLoading = false;
 //form logic
 function form() {
     const form_data = document.getElementById('userForm');
@@ -112,7 +112,7 @@ async function getUser(id) {
         const html_op = document.getElementById("user-output");
         html_op.innerText = "";
         userCard(op);
-        html_op.firstChild.classList.add('show');
+        // html_op.firstChild.classList.add('show');
     } catch (e) { console.log(e); status_handle(e) }
 }
 
@@ -149,27 +149,27 @@ function userCard(obj) {
     })
 }
 
-async function getAllUsers() {
+const observe = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+        if (!alreadyLoading)
+            getAllUsers(10);
+        else return;
+    }
+}, { rootMargin: '20px', threshold: 0.5 })
+
+observe.observe(document.getElementById('load'))
+
+async function getAllUsers(limit) {
     try {
-        const op = await helper("getAllUsers", {});
-        const html_op = document.getElementById("user-output");
-        html_op.innerText = "";
+        console.log(limit)
+        alreadyLoading = true;//!false = true
+        const op = await helper("getAllUsers", { limit });
+        // const html_op = document.getElementById("user-output");
         op.forEach(obj => {
             userCard(obj)
         });
-        const observe = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("show")
-                    observe.unobserve(entry.target);
-                }
-            })
-        }, {
-            rootMargin: "-50px",
-            threshold: 0.2,
-        })
-        document.querySelectorAll(".user").forEach(user => observe.observe(user));
-    } catch (e) { status_handle(e) };
+
+    } catch (e) { status_handle(e) } finally { alreadyLoading = false }
 }
 
 function status_handle(e) {
